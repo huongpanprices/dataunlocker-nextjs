@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && next export && npm run inject-dataunlocker",
+    "start": "next start",
+    "inject-dataunlocker": "output=$(curl --fail -F html=@out/index.html 'https://api.dataunlocker.com/properties/397932727959345337353454/scripts/latest/inject?encode=false') && echo \"$output\" > out/index.html || echo \"Failed to inject DataUnlocker's script\""
   },
   "dependencies": {
     "next": "10.0.7",
